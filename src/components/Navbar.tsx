@@ -35,9 +35,6 @@ const Navbar = () => {
               <a href="#work" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Work
               </a>
-              <a href="#about" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
-                About Us
-              </a>
               <a href="#careers" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Careers
               </a>
@@ -49,7 +46,7 @@ const Navbar = () => {
           
           <div className="hidden md:block">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2">
-              Get Started
+              Collab
             </Button>
           </div>
         </div>
