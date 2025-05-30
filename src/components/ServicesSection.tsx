@@ -1,22 +1,48 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Code, Palette, Smartphone, Wrench, Layers, Globe, TrendingUp, Wordpress } from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
     {
-      title: "AI Development",
-      description: "Custom AI solutions that transform your business processes and drive intelligent automation.",
-      icon: "🤖"
+      title: "Full Stack Development",
+      description: "End-to-end web application development using modern technologies and frameworks.",
+      icon: <Code className="w-8 h-8" />
     },
     {
-      title: "Software Engineering",
-      description: "Scalable, robust software development with modern technologies and best practices.",
-      icon: "💻"
+      title: "Web Design & Development",
+      description: "Custom website design and development tailored to your business needs.",
+      icon: <Globe className="w-8 h-8" />
     },
     {
-      title: "Product Strategy",
-      description: "Strategic guidance to align your digital products with market demands and user needs.",
-      icon: "📊"
+      title: "UI/UX Design",
+      description: "User-centered design solutions that create intuitive and engaging experiences.",
+      icon: <Palette className="w-8 h-8" />
+    },
+    {
+      title: "Website Maintenance & Optimization",
+      description: "Ongoing support and optimization to keep your website running at peak performance.",
+      icon: <Wrench className="w-8 h-8" />
+    },
+    {
+      title: "Custom Software Development",
+      description: "Tailored software solutions built to solve your unique business challenges.",
+      icon: <Layers className="w-8 h-8" />
+    },
+    {
+      title: "Mobile App Development",
+      description: "Native and cross-platform mobile applications for iOS and Android.",
+      icon: <Smartphone className="w-8 h-8" />
+    },
+    {
+      title: "Digital Marketing",
+      description: "Strategic digital marketing campaigns to grow your online presence and reach.",
+      icon: <TrendingUp className="w-8 h-8" />
+    },
+    {
+      title: "WordPress Development",
+      description: "Custom WordPress themes, plugins, and complete website solutions.",
+      icon: <Wordpress className="w-8 h-8" />
     }
   ];
 
@@ -32,15 +58,15 @@ const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <Card 
               key={index}
               className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border-gray-200 hover:border-blue-300"
             >
               <CardHeader className="text-center">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <CardTitle className="text-xl font-semibold text-gray-900">
+                <div className="text-blue-600 mb-4 flex justify-center">{service.icon}</div>
+                <CardTitle className="text-lg font-semibold text-gray-900">
                   {service.title}
                 </CardTitle>
               </CardHeader>
