@@ -1,6 +1,6 @@
 
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -119,11 +119,11 @@ const HeroSection = () => {
                     </div>
                     
                     <div className="space-y-2 font-mono text-sm">
-                      <div className="text-purple-600">const innovation = {</div>
+                      <div className="text-purple-600">const innovation = {`{`}</div>
                       <div className="text-blue-600 ml-4">ai: 'cutting-edge',</div>
                       <div className="text-green-600 ml-4">development: 'scalable',</div>
                       <div className="text-orange-600 ml-4">delivery: 'fast'</div>
-                      <div className="text-purple-600">};</div>
+                      <div className="text-purple-600">{`};`}</div>
                     </div>
                   </div>
                   
@@ -133,7 +133,10 @@ const HeroSection = () => {
                       <div className="text-2xl mb-2">🤖</div>
                       <div className="text-xs font-semibold text-blue-700">AI Powered</div>
                     </div>
-                    <div className="bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg text-center animate-bounce" style={{animationDelay: '0.5s'}}>
+                    <div 
+                      className="bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg text-center animate-bounce" 
+                      style={{animationDelay: '0.5s'}}
+                    >
                       <div className="text-2xl mb-2">⚡</div>
                       <div className="text-xs font-semibold text-purple-700">Lightning Fast</div>
                     </div>
