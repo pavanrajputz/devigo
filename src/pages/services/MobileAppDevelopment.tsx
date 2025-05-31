@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, CheckCircle, Smartphone, Apple, Android, Code } from "lucide-react";
+import { ArrowRight, CheckCircle, Smartphone, Apple, Code } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -22,7 +21,7 @@ const MobileAppDevelopment = () => {
 
   const platforms = [
     { name: "iOS", icon: <Apple className="w-8 h-8" />, description: "Native iOS apps using Swift and Objective-C" },
-    { name: "Android", icon: <Android className="w-8 h-8" />, description: "Native Android apps using Kotlin and Java" },
+    { name: "Android", icon: <Smartphone className="w-8 h-8" />, description: "Native Android apps using Kotlin and Java" },
     { name: "Flutter", icon: <Code className="w-8 h-8" />, description: "Cross-platform apps with single codebase" },
     { name: "React Native", icon: <Smartphone className="w-8 h-8" />, description: "JavaScript-based cross-platform development" }
   ];
