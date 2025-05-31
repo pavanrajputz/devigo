@@ -1,6 +1,5 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Palette, Smartphone, Wrench, Layers, Globe, TrendingUp, Wordpress } from "lucide-react";
+import { Code, Palette, Smartphone, Wrench, Layers, Globe, TrendingUp, Code2 } from "lucide-react";
 
 const ServicesSection = () => {
   const services = [
@@ -42,7 +41,7 @@ const ServicesSection = () => {
     {
       title: "WordPress Development",
       description: "Custom WordPress themes, plugins, and complete website solutions.",
-      icon: <Wordpress className="w-8 h-8" />
+      icon: <Code2 className="w-8 h-8" />
     }
   ];
 
