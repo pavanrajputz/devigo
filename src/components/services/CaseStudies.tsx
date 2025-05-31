@@ -25,6 +25,16 @@ const CaseStudies = () => {
       image: "bg-gradient-to-br from-blue-100 to-cyan-100",
       accent: "from-blue-500 to-cyan-500",
       link: "/case-studies/ecommerce-platform"
+    },
+    {
+      title: "Corporate CRM System",
+      client: "TechCorp Industries",
+      description: "Custom CRM solution that revolutionized sales process and customer relationship management with automation and analytics.",
+      outcome: "180% increase in lead conversion, 60% faster sales cycles",
+      tech: ["React", "Node.js", "PostgreSQL", "Redis"],
+      image: "bg-gradient-to-br from-green-100 to-emerald-100",
+      accent: "from-green-500 to-emerald-500",
+      link: "/case-studies/corporate-crm"
     }
   ];
 
@@ -43,13 +53,15 @@ const CaseStudies = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
           {caseStudies.map((study, index) => (
             <Link key={index} to={study.link}>
               <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer">
                 <div className={`h-48 ${study.image} flex items-center justify-center relative overflow-hidden`}>
                   <div className={`absolute inset-0 bg-gradient-to-r ${study.accent} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
-                  <div className="text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">💼</div>
+                  <div className="text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">
+                    {index === 0 ? "🏥" : index === 1 ? "🛒" : "📊"}
+                  </div>
                 </div>
                 
                 <CardContent className="p-8">
@@ -90,10 +102,12 @@ const CaseStudies = () => {
         </div>
         
         <div className="text-center">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
-            View All Case Studies
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/case-studies">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group">
+              View All Case Studies
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

@@ -33,12 +33,12 @@ const Navbar = () => {
               <Link to="/services" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Services
               </Link>
-              <a href="#work" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+              <Link to="/work" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Work
-              </a>
-              <a href="#careers" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
-                Careers
-              </a>
+              </Link>
+              <Link to="/case-studies" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+                Case Studies
+              </Link>
               <a href="#contact" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
                 Contact
               </a>
