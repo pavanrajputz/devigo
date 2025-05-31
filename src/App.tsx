@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Work from "./pages/Work";
 import CaseStudies from "./pages/CaseStudies";
+import Contact from "./pages/Contact";
 import WebDevelopment from "./pages/services/WebDevelopment";
 import MobileAppDevelopment from "./pages/services/MobileAppDevelopment";
 import UIUXDesign from "./pages/services/UIUXDesign";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/work" element={<Work />} />
           <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/services/web-development" element={<WebDevelopment />} />
           <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
           <Route path="/services/ui-ux-design" element={<UIUXDesign />} />
