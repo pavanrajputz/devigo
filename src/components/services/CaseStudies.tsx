@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const CaseStudies = () => {
   const caseStudies = [
@@ -12,7 +13,8 @@ const CaseStudies = () => {
       outcome: "90% reduction in manual errors, 3x faster processing time",
       tech: ["React", "Node.js", "MongoDB", "Socket.io"],
       image: "bg-gradient-to-br from-red-100 to-pink-100",
-      accent: "from-red-500 to-pink-500"
+      accent: "from-red-500 to-pink-500",
+      link: "/case-studies/blood-bank-system"
     },
     {
       title: "E-commerce Platform",
@@ -21,7 +23,8 @@ const CaseStudies = () => {
       outcome: "250% increase in sales, 40% better user engagement",
       tech: ["Next.js", "Laravel", "MySQL", "Stripe"],
       image: "bg-gradient-to-br from-blue-100 to-cyan-100",
-      accent: "from-blue-500 to-cyan-500"
+      accent: "from-blue-500 to-cyan-500",
+      link: "/case-studies/ecommerce-platform"
     }
   ];
 
@@ -42,45 +45,47 @@ const CaseStudies = () => {
         
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
           {caseStudies.map((study, index) => (
-            <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <div className={`h-48 ${study.image} flex items-center justify-center relative overflow-hidden`}>
-                <div className={`absolute inset-0 bg-gradient-to-r ${study.accent} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
-                <div className="text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">💼</div>
-              </div>
-              
-              <CardContent className="p-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className={`w-3 h-3 bg-gradient-to-r ${study.accent} rounded-full`}></div>
-                  <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">{study.client}</span>
+            <Link key={index} to={study.link}>
+              <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+                <div className={`h-48 ${study.image} flex items-center justify-center relative overflow-hidden`}>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${study.accent} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
+                  <div className="text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">💼</div>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
-                  {study.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {study.description}
-                </p>
-                
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                  <div className="text-sm font-medium text-green-800 mb-1">Key Results:</div>
-                  <div className="text-green-700">{study.outcome}</div>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {study.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <Button variant="outline" className="w-full group/btn hover:bg-blue-600 hover:text-white hover:border-blue-600">
-                  View Full Case Study
-                  <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className={`w-3 h-3 bg-gradient-to-r ${study.accent} rounded-full`}></div>
+                    <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">{study.client}</span>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                    {study.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {study.description}
+                  </p>
+                  
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div className="text-sm font-medium text-green-800 mb-1">Key Results:</div>
+                    <div className="text-green-700">{study.outcome}</div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {study.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <Button variant="outline" className="w-full group/btn hover:bg-blue-600 hover:text-white hover:border-blue-600">
+                    Read Full Case Study
+                    <ExternalLink className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
         
