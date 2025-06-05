@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Scene3D from "./Scene3D";
@@ -16,144 +17,78 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative pt-16 pb-20 min-h-screen flex items-center overflow-hidden">
-      {/* Animated background with 3D scene */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        <div className="absolute inset-0 opacity-30">
-          <div 
-            className="absolute w-96 h-96 bg-blue-200 rounded-full blur-3xl animate-pulse"
-            style={{
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-              transition: 'transform 0.1s ease-out'
-            }}
-          />
-          <div 
-            className="absolute top-1/2 right-1/4 w-72 h-72 bg-purple-200 rounded-full blur-3xl animate-pulse"
-            style={{
-              transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * -0.015}px)`,
-              transition: 'transform 0.1s ease-out'
-            }}
-          />
-        </div>
-        {/* 3D Scene */}
-        <div className="absolute inset-0 opacity-80">
+      {/* Dark space-like background with 3D scene */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800">
+        {/* 3D Scene as main background */}
+        <div className="absolute inset-0">
           <Scene3D />
         </div>
+        
+        {/* Subtle overlay for readability */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in space-y-8">
+        <div className="text-center space-y-8">
+          <div className="animate-fade-in space-y-6">
             <div className="space-y-6">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100/90 backdrop-blur-sm text-blue-600 text-sm font-medium rounded-full animate-bounce">
+              <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-medium rounded-full animate-pulse">
                 🚀 Building the Future of Digital Products
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
-                Empowering Digital Products with{" "}
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent animate-pulse">
-                  AI & Innovation
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+                <span className="block">THRESHOLD</span>
+                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                  OF INNOVATION
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-                We help startups and enterprises build scalable, intelligent software that transforms businesses and delights users.
+              <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                Transcending boundaries of digital innovation through immersive technology experiences
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <Button 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold group transform transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 text-white px-10 py-4 text-lg font-semibold group transform transition-all duration-300 hover:scale-105 backdrop-blur-sm border border-white/20 rounded-full"
                 size="lg"
               >
-                Let's Talk
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                ENTER THE VOID
+                <span className="ml-3 group-hover:translate-x-1 transition-transform">→</span>
               </Button>
               
               <Button 
                 variant="outline"
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300 backdrop-blur-sm bg-white/80"
+                className="border-2 border-white/30 text-white hover:bg-white/10 hover:text-white px-10 py-4 text-lg font-semibold transition-all duration-300 backdrop-blur-sm bg-white/5 rounded-full"
                 size="lg"
               >
-                View Our Work
+                EXPLORE WORK
               </Button>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200/50">
-              <div className="text-center bg-white/50 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-gray-900">150+</div>
-                <div className="text-sm text-gray-600">Projects Delivered</div>
+            {/* Stats with futuristic styling */}
+            <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div className="text-3xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text">150+</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Projects Delivered</div>
               </div>
-              <div className="text-center bg-white/50 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-gray-900">98%</div>
-                <div className="text-sm text-gray-600">Client Satisfaction</div>
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div className="text-3xl font-bold text-transparent bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text">98%</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Client Satisfaction</div>
               </div>
-              <div className="text-center bg-white/50 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold text-gray-900">24/7</div>
-                <div className="text-sm text-gray-600">Support Available</div>
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div className="text-3xl font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text">24/7</div>
+                <div className="text-sm text-gray-400 uppercase tracking-wider">Support Available</div>
               </div>
             </div>
           </div>
-          
-          <div className="relative animate-fade-in lg:hidden">
-            {/* Keep existing illustration for mobile fallback */}
-            <div className="relative w-full h-96 lg:h-[500px]">
-              <div 
-                className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 rounded-3xl transform rotate-6 opacity-20 animate-pulse"
-                style={{
-                  transform: `rotate(6deg) translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
-                  transition: 'transform 0.2s ease-out'
-                }}
-              />
-              
-              <div 
-                className="absolute inset-4 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center transform -rotate-2"
-                style={{
-                  transform: `rotate(-2deg) translate(${mousePosition.x * -0.008}px, ${mousePosition.y * -0.008}px)`,
-                  transition: 'transform 0.2s ease-out'
-                }}
-              >
-                <div className="space-y-6 p-8">
-                  {/* Code snippet visualization */}
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    
-                    <div className="space-y-2 font-mono text-sm">
-                      <div className="text-purple-600">const innovation = {`{`}</div>
-                      <div className="text-blue-600 ml-4">ai: 'cutting-edge',</div>
-                      <div className="text-green-600 ml-4">development: 'scalable',</div>
-                      <div className="text-orange-600 ml-4">delivery: 'fast'</div>
-                      <div className="text-purple-600">{`};`}</div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating elements */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-lg text-center animate-bounce">
-                      <div className="text-2xl mb-2">🤖</div>
-                      <div className="text-xs font-semibold text-blue-700">AI Powered</div>
-                    </div>
-                    <div 
-                      className="bg-gradient-to-br from-purple-100 to-purple-200 p-4 rounded-lg text-center animate-bounce" 
-                      style={{animationDelay: '0.5s'}}
-                    >
-                      <div className="text-2xl mb-2">⚡</div>
-                      <div className="text-xs font-semibold text-purple-700">Lightning Fast</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating decoration elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-green-400 rounded-full animate-pulse"></div>
-              <div className="absolute top-1/4 -left-8 w-4 h-4 bg-pink-400 rounded-full animate-ping"></div>
-            </div>
-          </div>
+        </div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
