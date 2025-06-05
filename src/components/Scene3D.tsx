@@ -1,11 +1,11 @@
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sphere, Torus, Float, Stars, Environment, MeshDistortMaterial, Sparkles } from '@react-three/drei';
-import { useRef, useState, useMemo } from 'react';
+import { OrbitControls, Stars, Environment } from '@react-three/drei';
+import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-function InteractiveOrb({ position }: any) {
+function InteractiveOrb({ position }: { position: [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -25,34 +25,29 @@ function InteractiveOrb({ position }: any) {
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={1} floatIntensity={0.5}>
-      <mesh
-        ref={meshRef}
-        position={position}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        onClick={() => setClicked(!clicked)}
-      >
-        <sphereGeometry args={[0.8, 64, 64]} />
-        <MeshDistortMaterial
-          color={clicked ? "#ffffff" : hovered ? "#8b5cf6" : "#3b82f6"}
-          attach="material"
-          distort={hovered ? 0.4 : 0.2}
-          speed={hovered ? 3 : 1}
-          roughness={0.1}
-          metalness={0.8}
-          emissive={clicked ? "#3b82f6" : hovered ? "#1e40af" : "#000000"}
-          emissiveIntensity={clicked ? 0.5 : hovered ? 0.3 : 0.1}
-        />
-      </mesh>
-    </Float>
+    <mesh
+      ref={meshRef}
+      position={position}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+      onClick={() => setClicked(!clicked)}
+    >
+      <sphereGeometry args={[0.8, 32, 32]} />
+      <meshStandardMaterial
+        color={clicked ? "#ffffff" : hovered ? "#8b5cf6" : "#3b82f6"}
+        emissive={clicked ? "#3b82f6" : hovered ? "#1e40af" : "#000000"}
+        emissiveIntensity={clicked ? 0.5 : hovered ? 0.3 : 0.1}
+        roughness={0.3}
+        metalness={0.7}
+      />
+    </mesh>
   );
 }
 
 function FloatingRings() {
   const groupRef = useRef<THREE.Group>(null);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (groupRef.current) {
       groupRef.current.rotation.x += 0.003;
       groupRef.current.rotation.y += 0.005;
@@ -62,62 +57,23 @@ function FloatingRings() {
 
   return (
     <group ref={groupRef}>
-      <Torus args={[2, 0.1, 16, 100]} position={[0, 0, 0]} rotation={[0.5, 0, 0]}>
+      <mesh position={[0, 0, 0]} rotation={[0.5, 0, 0]}>
+        <torusGeometry args={[2, 0.1, 16, 100]} />
         <meshStandardMaterial color="#8b5cf6" transparent opacity={0.6} emissive="#8b5cf6" emissiveIntensity={0.2} />
-      </Torus>
-      <Torus args={[2.5, 0.05, 16, 100]} position={[0, 0, 0]} rotation={[1, 0.5, 0]}>
+      </mesh>
+      <mesh position={[0, 0, 0]} rotation={[1, 0.5, 0]}>
+        <torusGeometry args={[2.5, 0.05, 16, 100]} />
         <meshStandardMaterial color="#06b6d4" transparent opacity={0.4} emissive="#06b6d4" emissiveIntensity={0.1} />
-      </Torus>
-      <Torus args={[3, 0.03, 16, 100]} position={[0, 0, 0]} rotation={[0, 1, 0.5]}>
+      </mesh>
+      <mesh position={[0, 0, 0]} rotation={[0, 1, 0.5]}>
+        <torusGeometry args={[3, 0.03, 16, 100]} />
         <meshStandardMaterial color="#3b82f6" transparent opacity={0.3} emissive="#3b82f6" emissiveIntensity={0.1} />
-      </Torus>
+      </mesh>
     </group>
   );
 }
 
-function ParticleField() {
-  const particlesRef = useRef<THREE.Points>(null);
-  
-  const particleCount = 200;
-  const positions = useMemo(() => {
-    const pos = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 20;
-    }
-    return pos;
-  }, []);
-
-  useFrame((state) => {
-    if (particlesRef.current) {
-      particlesRef.current.rotation.y += 0.001;
-      particlesRef.current.rotation.x += 0.0005;
-    }
-  });
-
-  return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particleCount}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial 
-        size={0.03} 
-        color="#ffffff" 
-        transparent 
-        opacity={0.8}
-        sizeAttenuation={true}
-      />
-    </points>
-  );
-}
-
-function GlowingSphere({ position, color, scale = 1 }: any) {
+function GlowingSphere({ position, color, scale = 1 }: { position: [number, number, number], color: string, scale?: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
@@ -132,7 +88,7 @@ function GlowingSphere({ position, color, scale = 1 }: any) {
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.3, 32, 32]} />
+      <sphereGeometry args={[0.3, 16, 16]} />
       <meshStandardMaterial
         color={color}
         emissive={color}
@@ -156,17 +112,9 @@ const Scene3D = () => {
         <directionalLight position={[10, 10, 5]} intensity={0.5} color="#ffffff" />
         <pointLight position={[-10, -10, -10]} intensity={0.3} color="#8b5cf6" />
         <pointLight position={[10, 10, 10]} intensity={0.3} color="#06b6d4" />
-        <spotLight 
-          position={[0, 0, 10]} 
-          intensity={0.5} 
-          angle={0.3} 
-          penumbra={0.5} 
-          color="#3b82f6"
-          target-position={[0, 0, 0]}
-        />
         
         {/* Environment and stars */}
-        <Stars radius={300} depth={60} count={2000} factor={7} saturation={0} fade />
+        <Stars radius={300} depth={60} count={1000} factor={4} saturation={0} fade speed={0.5} />
         <Environment preset="night" />
         
         {/* Main interactive orb */}
@@ -174,10 +122,6 @@ const Scene3D = () => {
         
         {/* Floating rings around the main orb */}
         <FloatingRings />
-        
-        {/* Particle field */}
-        <ParticleField />
-        <Sparkles count={100} scale={10} size={3} speed={0.4} opacity={0.6} color="#ffffff" />
         
         {/* Additional glowing spheres */}
         <GlowingSphere position={[-4, 2, -2]} color="#8b5cf6" scale={0.8} />
