@@ -5,10 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Filter, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProjectDetailsModal from "@/components/ProjectDetailsModal";
 import { Link } from "react-router-dom";
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filters = ["All", "Healthcare", "E-commerce", "Enterprise", "SaaS", "Mobile"];
 
@@ -80,6 +83,11 @@ const Work = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -103,7 +111,6 @@ const Work = () => {
           </div>
         </div>
         
-        {/* Animated background elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-10 animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-400 rounded-full opacity-10 animate-pulse"></div>
         <div className="absolute top-40 right-20 w-16 h-16 bg-cyan-400 rounded-full opacity-10 animate-pulse"></div>
@@ -126,7 +133,7 @@ const Work = () => {
           
           <div className="grid lg:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <Card key={index} className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer" onClick={() => handleProjectClick(project)}>
                 <div className={`${project.image} h-48 flex items-center justify-center relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
                   <div className="text-4xl opacity-30 group-hover:scale-110 transition-transform duration-500">
@@ -157,18 +164,10 @@ const Work = () => {
                     ))}
                   </div>
                   
-                  {project.link !== "#" ? (
-                    <Link to={project.link}>
-                      <Button variant="outline" size="sm" className="w-full group/btn hover:bg-blue-600 hover:text-white">
-                        View Case Study
-                        <ExternalLink className="ml-2 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button variant="outline" size="sm" className="w-full" disabled>
-                      Coming Soon
-                    </Button>
-                  )}
+                  <Button variant="outline" size="sm" className="w-full group/btn hover:bg-blue-600 hover:text-white">
+                    View Details
+                    <ExternalLink className="ml-2 h-3 w-3 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -187,7 +186,6 @@ const Work = () => {
               Filter by industry or explore our complete portfolio
             </p>
             
-            {/* Filter Tabs */}
             <div className="flex flex-wrap justify-center gap-2 mb-8">
               {filters.map((filter) => (
                 <button
@@ -207,7 +205,7 @@ const Work = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
-              <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <Card key={index} className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => handleProjectClick(project)}>
                 <div className={`${project.image} h-40 flex items-center justify-center relative overflow-hidden`}>
                   <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
                   <div className="text-3xl opacity-30">
@@ -270,6 +268,12 @@ const Work = () => {
           </div>
         </div>
       </section>
+
+      <ProjectDetailsModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
 
       <Footer />
     </div>
