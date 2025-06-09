@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -13,6 +15,14 @@ const HeroSection = () => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  const handleEnterVoid = () => {
+    navigate("/contact", { state: { scrollToForm: true } });
+  };
+
+  const handleExploreWork = () => {
+    navigate("/work");
+  };
 
   return (
     <section id="home" className="relative pt-16 pb-20 min-h-screen flex items-center overflow-hidden">
@@ -40,7 +50,7 @@ const HeroSection = () => {
           <div className="animate-fade-in space-y-6">
             <div className="space-y-6">
               <div className="inline-flex items-center px-6 py-3 bg-blue-100 border border-blue-200 text-blue-800 text-sm font-medium rounded-full">
-                🚀 Building the Future of Digital Products
+                🚀 Design - Develop - Deploy
               </div>
               
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 leading-tight">
@@ -57,6 +67,7 @@ const HeroSection = () => {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <Button 
+                onClick={handleEnterVoid}
                 className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 text-white px-10 py-4 text-lg font-semibold group transform transition-all duration-300 hover:scale-105"
                 size="lg"
               >
@@ -65,6 +76,7 @@ const HeroSection = () => {
               </Button>
               
               <Button 
+                onClick={handleExploreWork}
                 variant="outline"
                 className="border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:text-gray-900 px-10 py-4 text-lg font-semibold transition-all duration-300"
                 size="lg"

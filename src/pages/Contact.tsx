@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +10,7 @@ import { Mail, Phone, Globe, MapPin, Linkedin, Twitter, Instagram, Github } from
 import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useLocation } from "react-router-dom";
 
 const Contact = () => {
   const [quickMessage, setQuickMessage] = useState({ email: "", message: "" });
@@ -22,6 +23,17 @@ const Contact = () => {
     budget: "",
     requirements: ""
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToForm) {
+      const inquirySection = document.getElementById('inquiry-form');
+      if (inquirySection) {
+        inquirySection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   const handleQuickMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -174,7 +186,7 @@ const Contact = () => {
       </section>
 
       {/* Inquiry Form Section */}
-      <section className="py-16 bg-gray-50">
+      <section id="inquiry-form" className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Tell Us About Your Project</h2>
